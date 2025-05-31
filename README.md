@@ -1,4 +1,4 @@
-# 📚 Simple Library Management System (C++)
+# 📚 Library Management System (C++)
 
 This is a basic console-based C++ program that simulates a simple library system. It demonstrates the use of **C++ classes** and **Standard Template Library (STL)** containers like `queue`, `stack`, and `list` for managing books and users.
 
