@@ -6,27 +6,29 @@ This is a basic console-based C++ program that simulates a simple library system
 
 ## 🚀 Features
 
-- Add and manage a single book and user
-- Borrow the book (if available) or join a waitlist
-- Return the book and update its availability
-- View user's borrow/return history using a stack
+- Add and manage a single book and user.
+- Borrow the book (if available) or join a waitlist.
+- Return the book and update its availability.
+- View the user's borrow/return history using a stack.
 
 ---
-##📸 Sample Output
-Please enter Book details:
-Title: Atomic Habits
-ISBN (International Standard Book Number): 12345
-Author: James Clear
 
-Please enter user details:
-Name:Hemaksh
-ID: 001
+## 📸 Sample Output
 
----- Menu ----
-1. Borrow Book
-2. Return Book
-3. View History
-4. Exit
+Please enter book details:  
+Title: Atomic Habits  
+ISBN (International Standard Book Number): 12345  
+Author: James Clear  
+
+Please enter user details:  
+Name: Hemaksh  
+ID: 001  
+
+---- Menu ----  
+1. Borrow Book  
+2. Return Book  
+3. View History  
+4. Exit  
 Enter your choice: 
 
 ---
@@ -43,7 +45,8 @@ Enter your choice:
 
 ---
 
-##🤝 Contributing
+## 🤝 Contributing
+
 Pull requests are welcome! Feel free to fork the repo, open issues, or suggest improvements.
 
 ---
@@ -58,7 +61,7 @@ Pull requests are welcome! Feel free to fork the repo, open issues, or suggest i
 
 ---
 
-##🌟 Show Your Support
+## 🌟 Show Your Support
 If you like this project, give it a ⭐ on GitHub to show support!
 
 ---
