@@ -1,0 +1,131 @@
+#include <iostream>
+#include <string>
+#include <queue>
+#include <stack>
+#include <list>
+
+class Book {
+private:
+    std::string title;
+    std::string ISBN;
+    std::string author;    
+    bool isAvailable;
+    std::queue<std::string> waitlist;
+
+public:
+    Book(std::string t, std::string i, std::string a) 
+        : title(t), ISBN(i), author(a), isAvailable(true) {}
+
+    bool isAvailableStatus() const { return isAvailable; }
+
+    void addToWaitlist(const std::string& username) {
+        waitlist.push(username);
+    }
+
+    void setAvailability(bool status) {
+        isAvailable = status;
+    }
+
+    std::string getTitle() const {
+        return title;
+    }
+};
+
+class User {
+private:
+    std::string username;
+    std::string userid;
+    std::list<Book*> borrowedBooks;
+    std::stack<std::string> history;
+
+public:
+    User(std::string name, std::string id) : username(name), userid(id) {}
+
+    std::string getUsername() const { return username; }
+    std::string getUserID() const { return userid; }
+
+    void borrowBook(Book* b) {
+        if (b->isAvailableStatus()) {
+            borrowedBooks.push_back(b);
+            b->setAvailability(false);
+            history.push("Borrowed: " + b->getTitle());
+            std::cout << "You borrowed: " << b->getTitle() << std::endl;
+        } else {
+            b->addToWaitlist(username);
+            std::cout << "Book not available. Added to waitlist." << std::endl;
+        }
+    }
+
+    void returnBook(Book* b) {
+        borrowedBooks.remove(b);
+        b->setAvailability(true);
+        history.push("Returned: " + b->getTitle());
+        std::cout << "You returned: " << b->getTitle() << std::endl;
+    }
+
+    void viewHistory() const {
+        std::stack<std::string> temp = history;
+        std::cout << "History for user " << username << ":\n";
+        while (!temp.empty()) {
+            std::cout << temp.top() << std::endl;
+            temp.pop();
+        }
+    }
+};
+
+int main() {
+    std::string t, i, a, name, id;
+
+    std::cout << "Please enter Book details:\n";
+    std::cout << "Title: ";
+    std::getline(std::cin, t);
+
+    std::cout << "ISBN (International Standard Book Number): ";
+    std::getline(std::cin, i);
+
+    std::cout << "Author: ";
+    std::getline(std::cin, a);
+
+    std::cout << "\nPlease enter user details:\n";
+    std::cout << "Name: ";
+    std::getline(std::cin, name);
+
+    std::cout << "ID: ";
+    std::getline(std::cin, id);
+
+    Book* b1 = new Book(t, i, a);
+    User u1(name, id);
+
+    int choice;
+    do {
+        std::cout << "\n---- Menu ----\n";
+        std::cout << "1. Borrow Book\n";
+        std::cout << "2. Return Book\n";
+        std::cout << "3. View History\n";
+        std::cout << "4. Exit\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+       
+
+        switch (choice) {
+            case 1:
+                u1.borrowBook(b1);
+                break;
+            case 2:
+                u1.returnBook(b1);
+                break;
+            case 3:
+                u1.viewHistory();
+                break;
+            case 4:
+                std::cout << "Exiting program. Goodbye!\n";
+                break;
+            default:
+                std::cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 4);
+
+    delete b1;
+    return 0;
+}
